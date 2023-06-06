@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Mahasiswa</title>
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="wrapper">
+          <div class="logo"><a href="">Details Obat</a></div>
+          <div class="menu">
+              <ul >
+                  <li><a class="tbl-biru" href="http://localhost:3000/hal-admin/">Kembali</a></li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+<main>
+  <div id="body-div">
+
+  </div>
+</main>
+    <script>
+      const tampungan = document.querySelector("#body-div");
+      const searchParams = new URLSearchParams(location.search);
+
+      fetch(`/api/obat/${searchParams.get("id")}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          const divName = document.createElement("div");
+          divName.textContent = `Nama Obat: ${data.nama_obat}`;
+          tampungan.appendChild(divName);
+
+          const divHarga = document.createElement("div");
+          divHarga.textContent = `Harga Obat: RP.${data.harga_obat}`;
+          tampungan.appendChild(divHarga);
+
+          const divKode = document.createElement("div");
+          divKode.textContent = `Kode Obat: ${data.kode_obat}`;
+          tampungan.appendChild(divKode);
+
+          const divStok = document.createElement("div");
+          divStok.textContent = `Stok Obat: ${data.stok_obat}`;
+          tampungan.appendChild(divStok);
+
+
+          const divFoto = document.createElement("div");
+          const imgPhoto = document.createElement("img");
+          imgPhoto.className="img-produk";
+          imgPhoto.src = `/photos/${data.foto}`;
+          divFoto.appendChild(imgPhoto);
+          tampungan.appendChild(divFoto);
+
+        });
+    </script>
+  </body>
+  <footer class="footer">
+    <div class="footer-container">
+        <div>
+            <ul class="social-icons">
+                <a href="https://twitter.com/login">
+                    <li class="flex"><i class="fa fa-twitter fa-2x"></i></li>
+                </a>
+                <a href="https://www.facebook.com/alya.siregar.754">
+                    <li class="flex"><i class="fa fa-facebook fa-2x"></i></li>
+                </a>
+                <a href="https://www.instagram.com/alya_siregar123/?hl=id">
+                    <li class="flex"><i class="fa fa-instagram fa-2x"></i></li>
+                </a>
+
+            </ul>
+        </div>
+        <div class="footer-text">
+            <div>
+                <h2>Useful</h2>
+                <a href="#">Blog</a>
+                <a href="#">Shopping</a>
+                <a href="#">Subscription</a>
+                <a href="#">Gift Card</a>
+            </div>
+            <div>
+                <h2>Community</h2>
+                <a href="#">Community Central</a>
+                <a href="#">Support</a>
+                <a href="#">Help</a>
+                <a href="#">Do Not Sell My info</a>
+            </div>  
+            <div>
+                <h2>Company</h2>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">FTC Disclosure</a>
+                <a href="#">Sitemap</a>
+            </div>
+            <div>
+                <h2>Privacy</h2>
+                <a href="#">Career</a>
+                <a href="#">Abou Us</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Service</a>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,253 @@
+*{
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family:'open Sans',sans-serif;
+    overflow-x: hidden;
+    background-color: #D6E4E5;
+}
+.wrapper{
+    width: 1100px;
+    margin: auto;
+    position: relative;
+}
+
+.logo{
+    font-size: 50px;
+    font-weight: 800;
+    float: left;
+    font-family: Courier;
+    color: #510818;
+}
+.menu{
+    float: right;
+
+}
+
+nav{
+    width: 107%;
+    margin: auto;
+    display: flex;
+    line-height: 80px;
+    position: sticky;position: -webkit-sticky;
+    top: 0;
+    background-color: #6D9886;
+    z-index: 1;
+    border-bottom: 1 solid black;
+}
+nav ul {
+    list-style: none;
+    margin: 0;padding: 0;
+    overflow: hidden;
+}
+nav ul li{
+    float: left;
+}
+
+nav ul li a{
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 0px 16 px 0px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover{
+    text-decoration: underline;
+}
+
+a.tbl-biru{
+    background-color: #7FE9DE;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 15px 20px 15px 20px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+a.tbl-biru:hover{
+    background-color:#8D72E1 ;
+    text-decoration: none;
+}
+.tbl-biru{
+    background-color: #7FE9DE;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 15px 20px 15px 20px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tbl-biru:hover{
+    background-color:#8D72E1 ;
+    text-decoration: none;
+}
+
+section{
+    margin: auto;
+    display: flex;
+    margin-bottom: 0px;
+    padding: 62px;
+    flex-wrap: wrap;
+    justify-content: end;
+}
+.body-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    flex-wrap: wrap;
+}
+.edit button:hover {
+    background-color: #8D72E1;
+}
+
+input{
+    padding: 14px;
+    margin: 6px;
+    border-radius: 15px;
+    width: 310px;
+}
+
+
+
+.container-edit {
+    width: 100%;
+    display: flex;
+    max-width: 97%;
+    background-color: aliceblue;
+    border-radius: 15px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    /* flex-wrap: wrap; */
+}
+
+
+.edit{
+    margin: 20px;
+    width: 250px;
+}
+
+.edit button{
+    width: 252px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color:#7FE9DE;
+
+}
+img {
+    display: block;
+}
+.right img {
+    width: 365px;
+    height: 100%;
+    border-top-left-radius: 60px;
+    border-bottom-right-radius: 53px;
+    padding: 138px;
+}
+
+
+/* footer */
+
+.footer-container p,
+.footer-container a {
+    opacity: 0.8;
+}
+
+.footer a {
+    display: block;
+    color: rgb(14, 13, 13);
+    text-decoration: none;
+}
+
+.social-icons {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+    text-align: center;
+}
+
+.social-icons li {
+    border-radius: 50%;
+    height:40px;
+    width: 40px;
+    margin: 10px;
+    transition: var(transition);
+    cursor: pointer;
+}
+
+.social-icons li:hover {
+    color: #8D72E1;
+    background:white;
+}
+
+
+footer {
+    background-color: #DEF5E5;
+    margin: -60px;
+    padding: 0px;
+}
+
+
+.footer-text {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    text-align:center;
+    align-items: baseline;
+    font-size: 15px;
+    padding: 30px;margin: -45px;
+}
+.footer-text a:hover {
+    color:#8D72E1;
+}
+
+
+.footer-text h2{
+    font-size: 25px;
+}
+
+
+@media screen and (max-width:991.98px){
+     footer{
+        margin: 0px;
+     }
+     .container-edit {
+        padding: 250px;
+     }
+
+     .wrapper{
+        width: 90%;
+    }
+    .logo a{
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav .menu{
+        width: 100%;
+        margin: 0;
+    }
+    nav .menu ul li{
+        display: inline-block;
+        float: none;
+    }
+
+    nav .menu ul{
+        text-align: center;
+        margin:auto;
+        line-height: 60px;
+    }
+
+}

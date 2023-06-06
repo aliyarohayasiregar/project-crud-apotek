@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="body-login">
+    <div class="container-login">
+        <div class="login">
+            <form name="login" class="log">
+              <ul >
+                <li><a class="tbl-biru" href="http://localhost:3000/halaman-utama">Kembali</a></li>
+              </ul>
+                <h1>login Admin</h1>
+                <hr>
+                <p>Cicendo Kota Bandung</p>
+                <label  for="login">Email</label>
+                <input name="username" type="text" placeholder="Email" required autofocus>
+                <label for="pas">Password</label>
+                <input name="password" type="password" placeholder="Password" required autofocus>
+                <button>Masuk</button>
+            </form>
+            <script>
+              document.login.onsubmit = async (e) => {
+                e.preventDefault();
+                const response = await fetch("/api/admin", {
+                  method: "POST",
+                  headers: {
+                    authorization: `Bearer ${localStorage.getItem("token")}`,
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    user: document.login.username.value,
+                    password: document.login.password.value,
+                  }),
+                });
+                if (response.ok) {
+                  const token = await response.text();
+                  localStorage.setItem("token", token);
+                  location.href = "/hal-admin";
+                } else {
+                  const message = await response.text();
+                  alert(message);
+                }
+              };
+              </script>
+      
+
+        </div>
+
+        <div class="right">
+            <img src="../images/ss.jpg" alt="">
+        </div>
+    </div>
+
+</body>
+
+</html>

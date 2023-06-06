@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Mahasiswa</title>
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="wrapper">
+          <div class="logo"><a href="">delete Obat</a></div>
+          <div class="menu">
+              <ul >
+                  <li><a class="tbl-biru" href="http://localhost:3000/hal-admin/">Kembali</a></li>
+              </ul>
+          </div>
+      </div>
+     </nav> 
+     <section>
+      <table border="2">
+        <thead>
+          <tr>
+            <th>Nama Obat</th>
+            <th>Harga Obat</th>
+            <th>Kode obat</th>
+            <th>stok obat</th>
+            <th>foto</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+  
+     </section>
+    <script>
+      if (!localStorage.getItem("token")) {
+        location.href = "/hal-admin";
+      }
+
+      fetch("/api/obat", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          for (let i = 0; i < data.length; i++) {
+            const tr = document.createElement("tr");
+
+            const tdNim = document.createElement("td");
+            tdNim.textContent = data[i].nama_obat;
+            tr.appendChild(tdNim);
+
+            const tdName = document.createElement("td");
+            tdName.textContent = "Rp."+data[i].harga_obat;
+            tr.appendChild(tdName);
+
+            const kode= document.createElement("td");
+            kode.textContent = data[i].kode_obat;
+            tr.appendChild(kode);
+
+            const stok= document.createElement("td");
+            stok.textContent = data[i].stok_obat;
+            tr.appendChild(stok);
+
+            const tdPhoto = document.createElement("td");
+            const imgPhoto = document.createElement("img");
+            imgPhoto.className="img-produk"
+            imgPhoto.src = `/photos/${data[i].foto}`;
+            tdPhoto.appendChild(imgPhoto);
+            tr.appendChild(tdPhoto);
+
+           
+
+            const tdDelete = document.createElement("td");
+            const buttonDelete = document.createElement("button");
+            buttonDelete.className="tbl-biru";
+            buttonDelete.textContent = "Hapus";
+            buttonDelete.onclick = () => {
+              if (
+                confirm(
+                  `Apakah Anda yakin ingin menghapus ${data[i].nama_obat} (${data[i].kode_obat})?`
+                )
+              ) {
+                fetch(`/api/obat/${data[i].id}`, {
+                  method: "DELETE",
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+                });
+                location.reload();
+              }
+            };
+            tdDelete.appendChild(buttonDelete);
+            tr.appendChild(tdDelete);
+
+            document.querySelector("tbody").appendChild(tr);
+          }
+        });
+    </script>
+      <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <ul class="social-icons">
+                    <a href="https://twitter.com/login">
+                        <li class="flex"><i class="fa fa-twitter fa-2x"></i></li>
+                    </a>
+                    <a href="https://www.facebook.com/alya.siregar.754">
+                        <li class="flex"><i class="fa fa-facebook fa-2x"></i></li>
+                    </a>
+                    <a href="https://www.instagram.com/alya_siregar123/?hl=id">
+                        <li class="flex"><i class="fa fa-instagram fa-2x"></i></li>
+                    </a>
+    
+                </ul>
+            </div>
+            <div class="footer-text">
+                <div>
+                    <h2>Useful</h2>
+                    <a href="#">Blog</a>
+                    <a href="#">Shopping</a>
+                    <a href="#">Subscription</a>
+                    <a href="#">Gift Card</a>
+                </div>
+                <div>
+                    <h2>Community</h2>
+                    <a href="#">Community Central</a>
+                    <a href="#">Support</a>
+                    <a href="#">Help</a>
+                    <a href="#">Do Not Sell My info</a>
+                </div>  
+                <div>
+                    <h2>Company</h2>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">FTC Disclosure</a>
+                    <a href="#">Sitemap</a>
+                </div>
+                <div>
+                    <h2>Privacy</h2>
+                    <a href="#">Career</a>
+                    <a href="#">Abou Us</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Service</a>
+                </div>
+    
+            </div>
+        </div>
+    </footer>
+    
+  </body>
+
+
+</html>

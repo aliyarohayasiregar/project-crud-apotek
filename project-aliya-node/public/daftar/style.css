@@ -1,0 +1,122 @@
+ul {
+    list-style: none;
+    margin: 0;padding: 0;
+    overflow: hidden;
+}
+ul li{
+    float: left;
+}
+
+ ul li a{
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 0px 16 px 0px 16px;
+    text-decoration: none;
+}
+
+ul li a:hover{
+    text-decoration: underline;
+}
+a.tbl-biru{
+    background-color:#59C1BD;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 15px 20px 15px 20px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+a.tbl-biru:hover{
+    background-color:rgb(111, 97, 97) ;
+    text-decoration: none;
+}
+
+.body-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/giphy2.gif);
+    padding: 41px;
+}
+
+.container-login {
+    width: 100%;
+    display: flex;
+    max-width: 97%;
+    background-color: aliceblue;
+    border-radius: 15px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+.login {
+    width: 400px;
+}
+
+.log {
+    margin: 20px;
+    width: 250px;
+}
+
+h1 {
+    margin: 20px;
+    text-align: center;
+    font-weight: bolder;
+    text-transform: uppercase;
+
+}
+
+hr {
+    border-top: 2px solid #59C1BD;
+}
+
+.right img {
+    width: 450px;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.log label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px;
+}
+
+.log input {
+    width: 100%;
+    margin: 2px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+#modal {
+    display: flex;
+    justify-content: end;
+}
+
+.log button {
+    width: 252px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color:#59C1BD
+}
+
+img {
+    display: block;
+}
+
+.log button:hover {
+    background-color: red;
+}
+
+

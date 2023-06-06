@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css">
+    <title>Edit Mahasiswa</title>
+    <!-- <link rel="stylesheet" href="/style.css" /> -->
+  </head>
+  <body>
+    <nav>
+      <div class="wrapper">
+          <div class="logo"><a href="">AlPotek.com</a></div>
+          <div class="menu">
+              <ul >
+                  <li><a class="tbl-biru" href="http://localhost:3000/hal-admin/">Kembali</a></li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <section>
+    <div class="container-edit">
+      <div class="body-edit">
+        <form name="edit" class="edit">
+          <h1>Edit Obat</h1>
+          <input type="text" name="nama_obat" placeholder="nama obat" required autofocus />
+          <input type="text" name="harga" placeholder="harga obat" required />
+          <input type="text" name="kode_obat" placeholder="kode obat" required />
+          <input type="text" name="stok" placeholder="Stok Obat" required />
+          <label>
+            Foto
+            <input type="file" name="photo" />
+          </label>
+          <button>Simpan</button>
+        </form>  
+        <div class="right"><img src="../gg.png" alt=""></div>
+      </div>  
+    </div>
+
+  </section>
+    <script>
+      const searchParams = new URLSearchParams(location.search);
+
+      fetch(`/api/obat/${searchParams.get("id")}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          document.edit.nama_obat.value = data.nama_obat;
+          document.edit.harga.value = data.harga_obat;
+          document.edit.kode_obat=data.kode_obat;
+          document.edit.stok=data.stok_obat;
+          document.edit.photo=File.foto;
+
+        });
+        
+      document.edit.onsubmit = async (e) => {
+        e.preventDefault();
+        const data = new FormData();
+        data.append("nama_obat", document.edit.nama_obat.value);
+        data.append("harga_obat", document.edit.harga.value);
+        data.append("kode_obat", document.edit.kode_obat.value);
+        data.append("stok_obat", document.edit.stok.value);
+        data.append("foto", document.edit.photo.files[0]);
+
+
+        fetch(`/api/obat/${searchParams.get("id")}`, {
+          method: "PUT",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: data,
+        });
+        alert("Data Berhasil Di edit.");
+        location.href="/dashboard/details";
+      };
+    </script>
+    
+  </body>
+  <footer class="footer">
+    <div class="footer-container">
+        <div>
+            <ul class="social-icons">
+                <a href="https://twitter.com/login">
+                    <li class="flex"><i class="fa fa-twitter fa-2x"></i></li>
+                </a>
+                <a href="https://www.facebook.com/alya.siregar.754">
+                    <li class="flex"><i class="fa fa-facebook fa-2x"></i></li>
+                </a>
+                <a href="https://www.instagram.com/alya_siregar123/?hl=id">
+                    <li class="flex"><i class="fa fa-instagram fa-2x"></i></li>
+                </a>
+
+            </ul>
+        </div>
+        <div class="footer-text">
+            <div>
+                <h2>Useful</h2>
+                <a href="#">Blog</a>
+                <a href="#">Shopping</a>
+                <a href="#">Subscription</a>
+                <a href="#">Gift Card</a>
+            </div>
+            <div>
+                <h2>Community</h2>
+                <a href="#">Community Central</a>
+                <a href="#">Support</a>
+                <a href="#">Help</a>
+                <a href="#">Do Not Sell My info</a>
+            </div>  
+            <div>
+                <h2>Company</h2>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">FTC Disclosure</a>
+                <a href="#">Sitemap</a>
+            </div>
+            <div>
+                <h2>Privacy</h2>
+                <a href="#">Career</a>
+                <a href="#">Abou Us</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Service</a>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+</html>

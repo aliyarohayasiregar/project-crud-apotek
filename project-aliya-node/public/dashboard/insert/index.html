@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>Tambah Obat</title>
+    <!-- <link rel="stylesheet" href="/style.css" /> -->
+  </head>
+  <body>
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><a href="">AlPotek.com</a></div>
+            <div class="menu">
+                <ul >
+                    <li><a class="tbl-biru" href="http://localhost:3000/hal-admin/">Kembali</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+      <div class="container-insert">
+        <div class="body-insert">
+          <form class="insert" name="insert">
+            <h1>Tambah Obat</h1>
+            <hr>
+            <input type="text" name="nama_obat" placeholder="Nama obat" required autofocus />
+            <input type="text" name="harga_obat" placeholder="Harga Obat" required />
+            <input type="text" name="kode_obat" placeholder="Kode Obat" required />
+            </label>
+            <input type="text" name="stok_obat" placeholder="Stok Obat" required /> 
+            <br>
+            <label>
+              Foto
+            </label>
+            <input type="file" name="photo" />
+            <button>Simpan</button>
+          </form>
+          <div class="right"><img src="../gg.png" alt=""></div>
+        </div>
+    
+      </div>
+
+  
+    </section>
+    <script>
+      document.insert.onsubmit = async (e) => {
+        e.preventDefault();
+        const data = new FormData();
+        data.append("nama_obat", document.insert.nama_obat.value);
+        data.append("harga_obat", document.insert.harga_obat.value);
+        data.append("kode_obat", document.insert.kode_obat.value);
+        data.append("stok_obat", document.insert.stok_obat.value);
+        data.append("foto", document.insert.photo.files[0]);
+
+
+        await fetch("/api/obat", {
+          method: "POST",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: data,
+        });
+        alert("Data Berhasil Ditambahkan.");
+        location.href="/dashboard/details";
+      };
+    </script>
+  </body>
+
+     
+  <footer class="footer">
+    <div class="footer-container">
+        <div>
+            <ul class="social-icons">
+                <a href="https://twitter.com/login">
+                    <li class="flex"><i class="fa fa-twitter fa-2x"></i></li>
+                </a>
+                <a href="https://www.facebook.com/alya.siregar.754">
+                    <li class="flex"><i class="fa fa-facebook fa-2x"></i></li>
+                </a>
+                <a href="https://www.instagram.com/alya_siregar123/?hl=id">
+                    <li class="flex"><i class="fa fa-instagram fa-2x"></i></li>
+                </a>
+
+            </ul>
+        </div>
+        <div class="footer-text">
+            <div>
+                <h2>Useful</h2>
+                <a href="#">Blog</a>
+                <a href="#">Shopping</a>
+                <a href="#">Subscription</a>
+                <a href="#">Gift Card</a>
+            </div>
+            <div>
+                <h2>Community</h2>
+                <a href="#">Community Central</a>
+                <a href="#">Support</a>
+                <a href="#">Help</a>
+                <a href="#">Do Not Sell My info</a>
+            </div>  
+            <div>
+                <h2>Company</h2>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">FTC Disclosure</a>
+                <a href="#">Sitemap</a>
+            </div>
+            <div>
+                <h2>Privacy</h2>
+                <a href="#">Career</a>
+                <a href="#">Abou Us</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Service</a>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+</html>
